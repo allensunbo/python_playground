@@ -19,3 +19,4 @@ def flatten_nested_dict(a, result=None):
 
 
 print(flatten_nested_dict({'a': 1, 'b': {'x': 2, 'y': {'z': 3}}, 'c': 4}))
+
