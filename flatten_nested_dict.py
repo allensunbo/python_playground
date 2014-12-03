@@ -18,5 +18,5 @@ def flatten_nested_dict(a, result=None):
     return result
 
 
-print(flatten_nested_dict({'a': 1, 'b': {'x': 2, 'y': {'z': 3}}, 'c': 4}))
+print(flatten_nested_dict({'a': 1, 'b': {'x': 2, 'y': {'z': 3}, 'p':{'q':2, 'r':{'s':3}}}, 'c': 4}))
 
