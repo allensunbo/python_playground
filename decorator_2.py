@@ -20,3 +20,50 @@ class Product():
 
 
 print(Product(50).price_with_tax(7.0))
+
+
+class Play(object):
+
+    """docstring for Play"""
+    status = 'open'
+    foo = lambda self: print('Hi!')
+
+    def __init__(self, arg):
+        super().__init__()
+        self.arg = arg
+
+    play = lambda self: print('play')
+
+    def play2(self):
+        print(Play.status)
+
+Play('').foo()
+Play('').play2()
+
+
+def bar(a=None):
+    if a == None:
+        a = []
+    a.append('bar')
+    return a
+
+
+print(bar())
+print(bar())
+print(bar())
+
+try:
+    l = [1, 2]
+    a = l[2]
+except (ValueError, IndexError) as e:
+    print(e)
+
+
+a = [10]
+
+def test():
+    a.append(10)
+
+test()
+
+print(a)
