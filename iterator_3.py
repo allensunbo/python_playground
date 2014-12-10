@@ -1,3 +1,7 @@
+"""
+    grep like utils
+"""
+
 def readfiles(filenames):
     for f in filenames:
         for line in open(f):
