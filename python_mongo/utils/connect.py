@@ -1,6 +1,7 @@
 
 import requests
 from pymongo import MongoClient
+import json
 
 
 class MongoConnectUtil():
@@ -30,10 +31,22 @@ if __name__ == '__main__':
     #
     app_key = 'a8e8e4c9ce101e94e09913cbdcc7a86d'
     baseUrl = 'http://api.themoviedb.org/3/'
+    mode = 'configuration?'
+    key = 'api_key=' + app_key
+    url = baseUrl + mode + key
+    r = requests.get(url)
+    configuration = r.json()
+    images_url = configuration['images']['base_url']
+    poster_size = configuration['images']['poster_sizes'][0]
+    print(images_url)
+    print(configuration['images'])
+    print(poster_size)
+
     mode = 'search/movie?query='
-    key = '&api_key=' + app_key
-    search = 'alien'
+    search = 'alien&'
     url = baseUrl + mode + search + key
+    print(url)
     r = requests.get(url)
     print(r.status_code)
-    print(r.json())
+    movies = r.json()
+    print(images_url + poster_size + movies['results'][0]['poster_path'])
