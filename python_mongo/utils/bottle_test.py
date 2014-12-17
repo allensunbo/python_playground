@@ -29,9 +29,11 @@ def hello():
     print(r.status_code)
     movies = r.json()
     # print(images_url + poster_size + movies['results'][index]['poster_path'])
-    response = ''
+    response = '<ul>'
     for i in range(10):
-        response = response + "<img src=\""+images_url + poster_size + movies['results'][i]['poster_path']+"\">"
+        response = response + "<li><h2>" + movies['results'][i]['title'] + "</h2>" + "<p>" + movies['results'][i][
+            'release_date'] + "</p>" + "<img src=\"" + images_url + poster_size + movies['results'][i]['poster_path'] + "\"></li>"
+    response = response + '</ul>'
     return response
 
 
