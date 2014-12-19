@@ -4,23 +4,25 @@ import json
 from bottle import route, run, error, hook, HTTPResponse, response
 
 
-@error(405)
-def method_not_allowed(res):
-    if request.method == 'OPTIONS':
-        new_res = HTTPResponse()
-        new_res.set_header('Access-Control-Allow-Origin', '*')
-        return new_res
-    res.headers['Allow'] += ', OPTIONS'
-    return request.app.default_error_handler(res)
+# @error(405)
+# def method_not_allowed(res):
+#     if request.method == 'OPTIONS':
+#         new_res = HTTPResponse()
+#         new_res.set_header('Access-Control-Allow-Origin', '*')
+#         return new_res
+#     res.headers['Allow'] += ', OPTIONS'
+#     print('method_not_allowed')
+#     return request.app.default_error_handler(res)
 
 
 @hook('after_request')
 def enableCORSAfterRequestHook():
+    print('after_request')
     response.set_header('Access-Control-Allow-Origin', '*')
 
 
-@route('/hello')
-def hello():
+@route('/movies')
+def movies():
     #
     index = 1
     app_key = 'a8e8e4c9ce101e94e09913cbdcc7a86d'
