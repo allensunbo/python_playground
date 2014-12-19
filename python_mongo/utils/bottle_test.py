@@ -1,7 +1,22 @@
 #!/usr/bin/python
 import requests
 import json
-from bottle import route, run
+from bottle import route, run, error, hook, HTTPResponse, response
+
+
+@error(405)
+def method_not_allowed(res):
+    if request.method == 'OPTIONS':
+        new_res = HTTPResponse()
+        new_res.set_header('Access-Control-Allow-Origin', '*')
+        return new_res
+    res.headers['Allow'] += ', OPTIONS'
+    return request.app.default_error_handler(res)
+
+
+@hook('after_request')
+def enableCORSAfterRequestHook():
+    response.set_header('Access-Control-Allow-Origin', '*')
 
 
 @route('/hello')
